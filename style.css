@@ -1,0 +1,501 @@
+/* VARIABLES & THEME */
+:root {
+    /* Palette: Lesbian Green Shades */
+    --color-military: #4B5320;
+    --color-moss: #8A9A5B;
+    --color-emerald: #50C878;
+    --color-forest: #2E8B57;
+
+    /* Accents */
+    --color-lavender: #E6E6FA;
+    --color-lilac: #C8A2C8;
+    --color-offwhite: #FAF9F6;
+    --color-dark-text: #2c2c2c;
+
+    /* Fonts */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+
+    /* Transitions */
+    --transition-fast: 0.3s ease;
+    --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* RESET & BASE */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-offwhite);
+    color: var(--color-dark-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* BACKGROUND TEXTURE */
+.bg-texture {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Subtle grain/mesh gradient */
+    background:
+        radial-gradient(at 0% 0%, rgba(138, 154, 91, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(200, 162, 200, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(80, 200, 120, 0.1) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(230, 230, 250, 0.2) 0px, transparent 50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    color: var(--color-military);
+    font-weight: 700;
+}
+
+/* UTILITIES */
+.section-padding {
+    padding: var(--spacing-lg) var(--spacing-sm);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#fotos.section-padding {
+    padding-top: var(--spacing-md);
+    /* Override to reduce gap */
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-forest);
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 3px;
+    background-color: var(--color-lilac);
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1.2s ease-out forwards;
+}
+
+.fade-in-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* HERO SECTION */
+.hero-section {
+    min-height: auto;
+    /* Removed 90vh constraint to reduce spacing */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Removed padding-bottom entirely to bring carousel closer via margin manipulation later if needed, 
+       but for now keeping minimal padding vertical */
+    padding: var(--spacing-lg) var(--spacing-md) 0 var(--spacing-md);
+    position: relative;
+}
+
+.main-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-military);
+}
+
+.highlight-name {
+    font-family: 'Great Vibes', cursive;
+    color: var(--color-emerald);
+    font-style: normal;
+    font-size: 1.2em;
+    /* Increase relative size */
+    padding: 0 5px;
+    /* Add padding to prevent clipping of swirls */
+    background: linear-gradient(120deg, transparent 0%, transparent 6px, var(--color-lavender) 6px, var(--color-lavender) 100%);
+    line-height: 1.2;
+    /* Ensure line-height accommodates new font */
+    display: inline-block;
+    /* Helps with background and transform */
+}
+
+.event-details {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-moss);
+}
+
+.event-details p {
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.location-link {
+    color: var(--color-moss);
+    text-decoration: none;
+    transition: color 0.3s;
+    border-bottom: 1px dashed var(--color-moss);
+}
+
+.location-link:hover {
+    color: var(--color-military);
+    border-bottom-style: solid;
+}
+
+.address-text {
+    font-size: 0.9rem;
+    color: var(--color-military);
+    margin: 0 auto 1rem auto !important;
+    /* Override default p margin */
+    max-width: 90%;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.countdown-container {
+    background: rgba(255, 255, 255, 0.6);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--color-lavender);
+}
+
+.countdown {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-military);
+    margin-top: 0.2rem;
+}
+
+/* FALLING ELEMENTS */
+.falling-element {
+    position: fixed;
+    top: -50px;
+    width: 15px;
+    height: 15px;
+    background: var(--color-lilac);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.6;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* CAROUSEL */
+.carousel-container {
+    position: relative;
+    height: 400px;
+    /* Adjustable */
+    width: 100%;
+    margin: 0 auto var(--spacing-md);
+    /* Reduced top margin to 0 */
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-track-container {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-track {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    height: 100%;
+    transition: transform 0.4s ease-in-out;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e0e0e0;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.carousel-button svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--color-military);
+}
+
+.carousel-button:hover {
+    background: white;
+}
+
+.carousel-button--left {
+    left: 10px;
+}
+
+.carousel-button--right {
+    right: 10px;
+}
+
+.is-hidden {
+    display: none;
+}
+
+.carousel-nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    z-index: 10;
+}
+
+.carousel-indicator {
+    border: 0;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.carousel-indicator.current-slide {
+    background: var(--color-emerald);
+    transform: scale(1.2);
+}
+
+/* MESSAGE CARD */
+.message-card {
+    background: white;
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(75, 83, 32, 0.08);
+    /* Military shadow */
+    position: relative;
+    border: 1px solid var(--color-lavender);
+}
+
+.decorative-corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--color-moss);
+}
+
+.top-left {
+    top: 10px;
+    left: 10px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.bottom-right {
+    bottom: 10px;
+    right: 10px;
+    border-left: none;
+    border-top: none;
+}
+
+.message-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: var(--spacing-sm);
+    /* Reduced from spacing-md */
+    color: #555;
+    text-align: left;
+}
+
+.message-text p {
+    margin-bottom: 0.5rem;
+    /* Reduced from 0.8rem */
+}
+
+.message-signature {
+    font-weight: 600;
+    color: var(--color-military);
+}
+
+/* RSVP FORM */
+.rsvp-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.input-group {
+    margin-bottom: var(--spacing-sm);
+    /* Reduced from spacing-md */
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--color-military);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--color-moss);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    border-color: var(--color-emerald);
+    box-shadow: 0 0 0 3px rgba(80, 200, 120, 0.2);
+}
+
+.rsvp-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: var(--font-body);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-confirm {
+    background-color: var(--color-emerald);
+    color: white;
+}
+
+.btn-decline {
+    background-color: #e57373;
+    /* Subtle red */
+    color: white;
+}
+
+.rsvp-note {
+    margin-top: var(--spacing-sm);
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: var(--spacing-md);
+    color: var(--color-moss);
+    margin-top: var(--spacing-lg);
+    font-size: 0.9rem;
+}
+
+/* RESPONSIVE */
+@media (min-width: 600px) {
+    .main-title {
+        font-size: 4.5rem;
+    }
+
+    .carousel-container {
+        height: 500px;
+    }
+
+    .rsvp-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .btn {
+        width: auto;
+        min-width: 180px;
+    }
+}

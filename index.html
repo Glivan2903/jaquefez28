@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquele em que Jaque faz 28</title>
+    <meta name="description" content="Venha celebrar os 28 anos da Jaque!">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Aquele em que Jaque faz 28">
+    <meta property="og:description" content="Você está convidado para celebrar este momento especial!">
+    <meta property="og:image" content="https://picsum.photos/1200/630"> <!-- Placeholder -->
+</head>
+
+<body>
+
+    <!-- Background Elements -->
+    <div class="bg-texture"></div>
+    <div class="falling-elements" id="falling-elements"></div>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero-section fade-in">
+            <div class="hero-content">
+                <h1 class="main-title">Aquele em que <br> <span class="highlight-name">Jaque</span> faz 28</h1>
+                <div class="event-details">
+                    <p class="date"><span class="icon">📅</span> Sexta, 20 de Fevereiro</p>
+                    <p class="time"><span class="icon">🕒</span> 19:00h</p>
+                    <p class="location">
+                        <a href="https://maps.app.goo.gl/fxCemTc36CkwGorR9?g_st=aw" target="_blank"
+                            class="location-link">
+                            <span class="icon">📍</span> Boteco Original
+                        </a>
+                    </p>
+                    <p class="address-text">Av. Farmacêutica Cezartina Régis, 335 - Loja A - Jabotiana, Aracaju - SE,
+                        49095-100</p>
+                </div>
+
+                <div class="countdown-container">
+                    <p>Faltam:</p>
+                    <div id="countdown" class="countdown">Carregando...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAROUSEL SECTION -->
+        <section id="carousel" class="section-padding fade-in-scroll">
+            <h2 class="section-title">Momentos</h2>
+            <div class="carousel-container">
+                <div class="carousel-track-container">
+                    <ul class="carousel-track">
+                        <li class="carousel-slide current-slide">
+                            <img src="img/foto1.jpg" alt="Jaque Criança">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="img/foto2.jpg" alt="Jaque Aniversário">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="img/foto3.jpg" alt="Jaque Bebê">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="img/foto4.jpg" alt="Jaque Sorrindo">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="img/foto5.jpg" alt="Jaque Viagem">
+                        </li>
+                    </ul>
+                </div>
+                <button class="carousel-button carousel-button--left is-hidden">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                    </svg>
+                </button>
+                <button class="carousel-button carousel-button--right">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                    </svg>
+                </button>
+                <div class="carousel-nav">
+                    <button class="carousel-indicator current-slide"></button>
+                    <button class="carousel-indicator"></button>
+                    <button class="carousel-indicator"></button>
+                    <button class="carousel-indicator"></button>
+                    <button class="carousel-indicator"></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MESSAGE SECTION -->
+        <section id="message" class="section-padding fade-in-scroll">
+            <div class="message-card">
+                <div class="decorative-corner top-left"></div>
+                <div class="decorative-corner bottom-right"></div>
+                <div class="message-text">
+                    <p>Dia 20, sexta-feira, é aniversário da maior.</p>
+                    <p>Sim, de Rihanna… mas não só. Meu também.</p>
+                    <p>Depois de muita pressão popular, decidi comemorar. E vai ser do jeito que dá: num bar, bebendo,
+                        rindo alto e fingindo que no dia seguinte não tem boleto.</p>
+                    <p>Ainda não tenho o orçamento da RihRih pra bancar festão pra 500 pessoas, então a proposta é
+                        simples: beber, socializar e, se tudo der certo, aparece um bolinho pra não dizer que não teve
+                        parabéns.</p>
+                    <p>Pensei num lugar acessível pra geral conseguir ir sem sofrimento.</p>
+                    <p>Como preciso reservar, confirma tua presença pra eu saber com quantas lendas vou brindar no dia
+                        em que o mundo ganhou o privilégio de me ter nele.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP SECTION -->
+        <section id="rsvp" class="section-padding fade-in-scroll">
+            <h2 class="section-title">Confirme sua Presença</h2>
+            <div class="rsvp-container">
+                <div class="input-group">
+                    <label for="guest-name">Digite seu nome:</label>
+                    <input type="text" id="guest-name" placeholder="Seu nome aqui..." autocomplete="off">
+                </div>
+
+                <div class="rsvp-buttons">
+                    <button id="btn-confirm" class="btn btn-confirm">
+                        ✅ Confirmar Presença
+                    </button>
+                    <button id="btn-decline" class="btn btn-decline">
+                        ❌ Não poderei ir
+                    </button>
+                </div>
+                <p class="rsvp-note">*Você será redirecionado para o WhatsApp com a mensagem pronta.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Feito com ❤️ para a Jaque</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
