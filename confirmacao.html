@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação - Aquele em que Jaque faz 28</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Elements -->
+    <div class="bg-texture"></div>
+    <div class="falling-elements" id="falling-elements"></div>
+
+    <main
+        style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem;">
+
+        <div class="message-card fade-in" style="max-width: 500px; padding: 3rem 2rem;">
+            <div class="decorative-corner top-left"></div>
+            <div class="decorative-corner bottom-right"></div>
+
+            <h1 style="color: var(--color-military); font-family: var(--font-heading); margin-bottom: 1.5rem;">Resposta
+                Enviada!</h1>
+
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #555;">
+                Obrigado por responder. <br>
+                Sua resposta foi registrada com sucesso.
+            </p>
+
+            <a href="index.html" class="btn btn-confirm" style="text-decoration: none; display: inline-block;">
+                Voltar ao Convite
+            </a>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+    <!-- Reuse script for falling elements if possible, or just ignore specific init logic that might fail if elements don't exist -->
+    <script>
+        // Simple fallback for falling elements if the main script expects specific IDs not present here
+        // But since we included the div #falling-elements, initFallingElements should work if we call it.
+        // However, script.js has DOMContentLoaded listener that calls initRSVP which looks for input fields that don't exist here.
+        // It might throw errors. Ideally we should have a cleaner separation, but for this simple pages, let's just add the elements or inline the animation.
+        // Actually, script.js errors might stop execution. Let's see. 
+        // For safety, let's just replicate the falling elements logic here inline to avoid script.js errors on missing elements.
+
+        const container = document.getElementById('falling-elements');
+        const colors = ['#E6E6FA', '#C8A2C8', '#50C878', '#8A9A5B'];
+        const elementCount = 20;
+
+        for (let i = 0; i < elementCount; i++) {
+            const el = document.createElement('div');
+            el.classList.add('falling-element');
+            const bg = colors[Math.floor(Math.random() * colors.length)];
+            const left = Math.random() * 100;
+            const duration = Math.random() * 5 + 5;
+            const delay = Math.random() * 5;
+
+            el.style.backgroundColor = bg;
+            el.style.left = `${left}vw`;
+            el.style.animationDuration = `${duration}s`;
+            el.style.animationDelay = `${delay}s`;
+
+            container.appendChild(el);
+        }
+    </script>
+</body>
+
+</html>

@@ -284,8 +284,8 @@ function initRSVP() {
         })
             .then(response => {
                 if (response.ok) {
-                    alert('Obrigado! Sua resposta foi enviada com sucesso.');
-                    nameInput.value = ''; // Clear input
+                    // Redirect to confirmation page
+                    window.location.href = 'confirmacao.html';
                 } else {
                     alert('Ocorreu um erro ao enviar sua resposta. Por favor, tente novamente.');
                 }
