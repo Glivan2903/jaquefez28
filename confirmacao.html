@@ -26,22 +26,24 @@
     <main
         style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem;">
 
-        <div class="message-card fade-in" style="max-width: 500px; padding: 3rem 2rem;">
-            <div class="decorative-corner top-left"></div>
-            <div class="decorative-corner bottom-right"></div>
+        <div class="decorative-corner top-left"></div>
+        <div class="decorative-corner bottom-right"></div>
 
-            <h1 style="color: var(--color-military); font-family: var(--font-heading); margin-bottom: 1.5rem;">Resposta
-                Enviada!</h1>
+        <h1 style="color: var(--color-military); font-family: var(--font-heading); margin-bottom: 1.5rem;">
+            Obrigado <span id="guest-name-display"></span>
+        </h1>
 
-            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #555;">
-                Obrigado por responder. <br>
-                Sua resposta foi registrada com sucesso.
-            </p>
+        <a href="index.html" class="btn btn-confirm" style="text-decoration: none; display: inline-block;">
+            Voltar ao Convite
+        </a>
 
-            <a href="index.html" class="btn btn-confirm" style="text-decoration: none; display: inline-block;">
-                Voltar ao Convite
-            </a>
-        </div>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const nome = urlParams.get('nome');
+            if (nome) {
+                document.getElementById('guest-name-display').textContent = nome;
+            }
+        </script>
 
     </main>
 

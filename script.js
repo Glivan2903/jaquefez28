@@ -284,8 +284,8 @@ function initRSVP() {
         })
             .then(response => {
                 if (response.ok) {
-                    // Redirect to confirmation page
-                    window.location.href = 'confirmacao.html';
+                    // Redirect to confirmation page with name
+                    window.location.href = `confirmacao.html?nome=${encodeURIComponent(name)}`;
                 } else {
                     alert('Ocorreu um erro ao enviar sua resposta. Por favor, tente novamente.');
                 }
