@@ -236,10 +236,10 @@ function initRSVP() {
     const btnConfirm = document.getElementById('btn-confirm');
     const btnDecline = document.getElementById('btn-decline');
 
-    const phoneNumber = '5579996843041';
+    const webhookUrl = 'https://n8n.jetsalesbrasil.com/webhook/4ecf88fc-873b-4615-9f6b-f0e9c29c8327';
 
-    // Helper to open WA
-    const openWhatsApp = (isConfirm) => {
+    // Helper to send to Webhook
+    const sendToWebhook = (isConfirm) => {
         const name = nameInput.value.trim();
 
         if (!name) {
@@ -248,21 +248,63 @@ function initRSVP() {
             return;
         }
 
+        let confirmationText = isConfirm ? 'SIM' : 'NÃO';
         let message = '';
+
         if (isConfirm) {
             message = `Olá! Meu nome é ${name} e confirmo minha presença na festa da Jaque! 🎉`;
         } else {
             message = `Olá! Meu nome é ${name}, infelizmente não poderei comparecer à festa da Jaque. 😢`;
         }
 
-        const encodedMessage = encodeURIComponent(message);
-        const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        // Disable buttons to prevent double submission
+        btnConfirm.disabled = true;
+        btnDecline.disabled = true;
+        const originalConfirmText = btnConfirm.innerText;
+        const originalDeclineText = btnDecline.innerText;
 
-        window.open(url, '_blank');
+        if (isConfirm) {
+            btnConfirm.innerText = 'Enviando...';
+        } else {
+            btnDecline.innerText = 'Enviando...';
+        }
+
+        const payload = {
+            "Nome": name,
+            "confirmação": confirmationText,
+            "Mensagem": message
+        };
+
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Obrigado! Sua resposta foi enviada com sucesso.');
+                    nameInput.value = ''; // Clear input
+                } else {
+                    alert('Ocorreu um erro ao enviar sua resposta. Por favor, tente novamente.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Ocorreu um erro ao conectar com o servidor. Por favor, tente novamente.');
+            })
+            .finally(() => {
+                // Re-enable buttons
+                btnConfirm.disabled = false;
+                btnDecline.disabled = false;
+                btnConfirm.innerText = originalConfirmText;
+                btnDecline.innerText = originalDeclineText;
+            });
     };
 
-    btnConfirm.addEventListener('click', () => openWhatsApp(true));
-    btnDecline.addEventListener('click', () => openWhatsApp(false));
+    btnConfirm.addEventListener('click', () => sendToWebhook(true));
+    btnDecline.addEventListener('click', () => sendToWebhook(false));
 }
 
 /* =========================================
